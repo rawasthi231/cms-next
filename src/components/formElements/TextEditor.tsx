@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { HTMLAttributes } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-import "react-quill/dist/quill.snow.css";
+import Loader from "@components/loader";
 
 interface TextareaProps<T extends FieldValues>
   extends HTMLAttributes<HTMLTextAreaElement> {
@@ -13,9 +13,9 @@ interface TextareaProps<T extends FieldValues>
   control: Control<T>;
 }
 
-const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
+const Editor = dynamic(() => import("./Editor"), {
   ssr: false,
-  loading: () => <p>Loading editor...</p>,
+  loading: () => <div className="mb-3"><Loader /></div> ,
 });
 
 export default function Textarea<T extends FieldValues>({
@@ -27,11 +27,7 @@ export default function Textarea<T extends FieldValues>({
     <Controller
       control={control}
       render={({ field }) => (
-        <QuillNoSSRWrapper
-          theme="snow"
-          value={field.value}
-          onChange={field.onChange}
-        />
+        <Editor value={field.value} onChange={field.onChange} />
       )}
       name={name}
       defaultValue={"" as T[typeof name]}

@@ -5,8 +5,7 @@ import {
   QueryRunner,
   Repository,
 } from "typeorm";
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions.js";
-// import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 import { Post } from "@lib/entities/posts";
 import { Page } from "@lib/entities/pages";
@@ -24,7 +23,7 @@ class Database {
         type: "postgres",
         url: process.env.DATABASE_URL,
         entities: [Post, Page],
-        synchronize: true, // Use for development only; run migrations in production
+        synchronize: false, // Development only; Use migrations in production
         schema: "public",
       });
       if (!Database.connectionInfo) {

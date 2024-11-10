@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 
 import config from "@/config/index";
-import PostEditor from "@/components/postEditor";
+import PageEditor from "@/components/postEditor";
 
 import { IData } from "@/typings";
 import { errorToast, successToast } from "@/components/toast";
 
-export default function CreatePost() {
+export default function CreatePage() {
   const router = useRouter();
 
   const { mutate, isPending } = useMutation<
@@ -17,21 +17,21 @@ export default function CreatePost() {
     unknown,
     Partial<IData>
   >({
-    mutationFn: (newPost: Partial<IData>) =>
-      fetch(`${config.baseUrl}/api/posts`, {
+    mutationFn: (newPage: Partial<IData>) =>
+      fetch(`${config.baseUrl}/api/pages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newPost),
+        body: JSON.stringify(newPage),
       }).then((res) => res.json()),
     onSuccess: async (data) => {
-      console.log("Post created successfully", data);
-      successToast("Post created successfully");
-      router.push("/posts?refetch=true");
+      console.log("Page created successfully", data);
+      successToast("Page created successfully");
+      router.push("/pages?refetch=true");
     },
     onError: (error) => {
-      console.log("Error while creating post", error);
+      console.log("Error while creating page", error);
       errorToast("Oops! Something went wrong");
     },
   });
@@ -39,14 +39,14 @@ export default function CreatePost() {
   return (
     <>
       <Head>
-        <title>Create Post</title>
+        <title>Create Page</title>
         <meta name="description" content="Projects Page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PostEditor
-        title="Create New Post"
+      <PageEditor
+        title="Create New Page"
         isPending={isPending}
         onSave={mutate}
       />
