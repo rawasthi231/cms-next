@@ -1,7 +1,3 @@
-// import { useState } from "react";
-
-// import ReactDOMServer from "react-dom/server";
-
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
@@ -21,45 +17,6 @@ export default function Posts({
   plugins: Plugin[];
 }) {
   const router = useRouter();
-
-  // const [content, setContent] = useState("");
-  // const [content2, setContent2] = useState("");
-
-  // // Render content with plugins
-  // const renderContentWithPlugins = (content: any) => {
-  //   plugins.forEach((plugin) => {
-  //     if (plugin.render) {
-  //       content = plugin.render(content);
-  //     }
-  //   });
-  //   return content;
-  // };
-
-  // To serialize React element to HTML string
-
-  // const serializeContent = (content: any) => {
-  //   // Convert the React element (content) into an HTML string
-  //   return ReactDOMServer.renderToStaticMarkup(content);
-  // };
-
-  // const serializeContentToJSON = (content: any) => {
-  //   return {
-  //     type: content.type,
-  //     props: content.props,
-  //   };
-  // };
-
-  // const handleSave = () => {
-  //   console.log("Content:", content);
-
-  //   const finalContent = renderContentWithPlugins(content);
-  //   const serializedContent1 = serializeContent(finalContent); // Serialize content to HTML
-  //   console.log("Saving content:", serializedContent1);
-  //   setContent2(serializedContent1);
-  //   // const serializedContent2 = serializeContentToJSON(finalContent);
-  //   // console.log("Saving content:", serializedContent2);
-  //   // Save the content to the database or backend here
-  // };
 
   return (
     <>

@@ -1,9 +1,8 @@
-// lib/pluginManager.ts
 import React from "react";
-
 export interface Plugin {
-  name: string;
-  render: (content: any) => JSX.Element;
+  name: string; // Unique name for the plugin
+  render?: (content: any) => React.ReactNode; // Optional render function
+  init?: () => void; // Optional initialization function
 }
 
 let plugins: Plugin[] = [];

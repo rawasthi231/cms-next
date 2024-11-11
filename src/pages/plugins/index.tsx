@@ -2,7 +2,9 @@ import Head from "next/head";
 
 import CMSLayout from "@/layouts/CMSlayout";
 
-export default function Home() {
+import { Plugin } from "@/lib/pluginManager";
+
+export default function Plugins({ plugins }: { plugins: Plugin[] }) {
   return (
     <>
       <Head>
@@ -14,9 +16,15 @@ export default function Home() {
       <CMSLayout title="Plugins">
         <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-800">Plugins</h1>
+            <h1 className="text-2xl font-bold text-gray-800">
+              Installed Plugins
+            </h1>
           </div>
-          <p className="text-gray-700">Coming soon...</p>
+          <ol>
+            {plugins.map((plugin, index) => (
+              <li key={index}>{plugin.name}</li>
+            ))}
+          </ol>
         </div>
       </CMSLayout>
     </>
